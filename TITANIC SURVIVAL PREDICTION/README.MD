@@ -28,7 +28,7 @@ The dataset used in this project contains information about individual passenger
 7. Final Model Selection: Choose the best-performing model based on evaluation results.
 
 ## Requirements
-- Python 3.x
+- Python 3.11
 - Jupyter Notebook or any Python IDE
 - Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn
 
