@@ -1,4 +1,4 @@
-# TASK 1:  Titanic Survival Prediction
+# Titanic Survival Prediction
 
 ## Overview
 This project aims to predict whether a passenger on the Titanic survived or not based on various features such as age, gender, ticket class, fare, and cabin. The Titanic dataset is a classic dataset often used in beginner machine learning projects due to its availability and historical significance.
@@ -32,5 +32,5 @@ The dataset used in this project contains information about individual passenger
 - Jupyter Notebook or any Python IDE
 - Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn
 
-## Usage
-1. Clone the repository:
+## RESULTS
+
