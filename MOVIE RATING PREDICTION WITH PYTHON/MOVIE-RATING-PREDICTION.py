@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -46,6 +46,13 @@ y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 print("Mean Squared Error:", mse)
 
+# Calculate RMSE and MAE
+rmse = np.sqrt(mse)
+print("Root Mean Squared Error:", rmse)
+
+mae = mean_absolute_error(y_test, y_pred)
+print("Mean Absolute Error:", mae)
+
 # Calculate R-squared
 r_squared = model.score(X_test, y_test)
 print("R-squared:", r_squared)
@@ -58,13 +65,31 @@ plt.ylabel("Predicted Ratings")
 plt.title("Actual vs Predicted Ratings")
 plt.show()
 
-# Calculate residuals
-residuals = y_test - y_pred
-
 # Residual plot
 plt.figure(figsize=(10, 6))
-sns.residplot(y_pred, residuals, lowess=True, line_kws={'color': 'red', 'lw': 1})
+sns.residplot(y_test, y_pred, lowess=True, line_kws={'color': 'red', 'lw': 1})
 plt.title('Residual Plot')
 plt.xlabel('Predicted Ratings')
 plt.ylabel('Residuals')
+plt.show()
+
+# Plot model coefficients
+coefficients = pd.DataFrame({'Feature': X.columns, 'Coefficient': model.coef_})
+coefficients = coefficients.sort_values(by='Coefficient', ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Coefficient', y='Feature', data=coefficients)
+plt.xlabel('Coefficient')
+plt.ylabel('Feature')
+plt.title('Model Coefficients')
+plt.show()
+
+# Plot feature importance
+feature_importance = pd.Series(model.coef_, index=X.columns).sort_values(ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=feature_importance, y=feature_importance.index)
+plt.xlabel('Feature Importance')
+plt.ylabel('Feature')
+plt.title('Feature Importance')
 plt.show()
