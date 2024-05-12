@@ -18,12 +18,12 @@ print(movie_data.isnull().sum())
 # Drop rows with missing values or handle them accordingly
 movie_data.dropna(inplace=True)
 
-# Convert categorical variables into dummy/indicator variables
-movie_data[['Genre']] = movie_data['Genre'].str.split(',', expand=True)
-movie_data = pd.get_dummies(movie_data, columns=['Genre'])
+# Split the 'Genre' column into multiple dummy variables
+genres = movie_data['Genre'].str.get_dummies(sep=', ')
+movie_data = pd.concat([movie_data, genres], axis=1)
 
 # Drop unnecessary columns
-movie_data.drop(['Name', 'Year', 'Duration', 'Director', 'Actor 1', 'Actor 2', 'Actor 3'], axis=1, inplace=True)
+movie_data.drop(['Name', 'Year', 'Duration', 'Genre', 'Director', 'Actor 1', 'Actor 2', 'Actor 3'], axis=1, inplace=True)
 
 # Split the data into features (X) and target variable (y)
 X = movie_data.drop(['Rating'], axis=1)
