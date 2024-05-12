@@ -58,9 +58,12 @@ plt.ylabel("Predicted Ratings")
 plt.title("Actual vs Predicted Ratings")
 plt.show()
 
+# Calculate residuals
+residuals = y_test - y_pred
+
 # Residual plot
 plt.figure(figsize=(10, 6))
-sns.residplot(y_test, y_pred, lowess=True, line_kws={'color': 'red', 'lw': 1})
+sns.residplot(y_pred, residuals, lowess=True, line_kws={'color': 'red', 'lw': 1})
 plt.title('Residual Plot')
 plt.xlabel('Predicted Ratings')
 plt.ylabel('Residuals')
