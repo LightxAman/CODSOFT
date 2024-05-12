@@ -18,6 +18,9 @@ print(movie_data.isnull().sum())
 # Drop rows with missing values or handle them accordingly
 movie_data.dropna(inplace=True)
 
+# Remove commas from the 'Votes' column and convert it to numeric
+movie_data['Votes'] = movie_data['Votes'].str.replace(',', '').astype(float)
+
 # Split the 'Genre' column into multiple dummy variables
 genres = movie_data['Genre'].str.get_dummies(sep=', ')
 movie_data = pd.concat([movie_data, genres], axis=1)
