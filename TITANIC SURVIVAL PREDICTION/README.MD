@@ -33,4 +33,4 @@ The dataset used in this project contains information about individual passenger
 - Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn
 
 ## RESULTS
-
+The Results form the code is in results sub-directory.
