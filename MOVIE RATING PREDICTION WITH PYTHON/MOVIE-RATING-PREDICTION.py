@@ -46,10 +46,22 @@ y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 print("Mean Squared Error:", mse)
 
+# Calculate R-squared
+r_squared = model.score(X_test, y_test)
+print("R-squared:", r_squared)
+
 # Visualize the predicted vs actual ratings
 plt.figure(figsize=(10, 6))
 plt.scatter(y_test, y_pred)
 plt.xlabel("Actual Ratings")
 plt.ylabel("Predicted Ratings")
 plt.title("Actual vs Predicted Ratings")
+plt.show()
+
+# Residual plot
+plt.figure(figsize=(10, 6))
+sns.residplot(y_test, y_pred, lowess=True, line_kws={'color': 'red', 'lw': 1})
+plt.title('Residual Plot')
+plt.xlabel('Predicted Ratings')
+plt.ylabel('Residuals')
 plt.show()
