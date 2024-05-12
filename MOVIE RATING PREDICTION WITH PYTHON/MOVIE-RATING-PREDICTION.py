@@ -19,11 +19,15 @@ print(movie_data.isnull().sum())
 movie_data.dropna(inplace=True)
 
 # Convert categorical variables into dummy/indicator variables
-movie_data = pd.get_dummies(movie_data, columns=['genre', 'director', 'actor1', 'actor2', 'actor3'])
+movie_data[['Genre']] = movie_data['Genre'].str.split(',', expand=True)
+movie_data = pd.get_dummies(movie_data, columns=['Genre'])
+
+# Drop unnecessary columns
+movie_data.drop(['Name', 'Year', 'Duration', 'Director', 'Actor 1', 'Actor 2', 'Actor 3'], axis=1, inplace=True)
 
 # Split the data into features (X) and target variable (y)
-X = movie_data.drop(['rating'], axis=1)
-y = movie_data['rating']
+X = movie_data.drop(['Rating'], axis=1)
+y = movie_data['Rating']
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
