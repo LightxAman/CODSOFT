@@ -13,13 +13,9 @@ data = pd.read_csv('advertising.csv')
 # Display the first few rows of the dataset
 print(data.head())
 
-# Data preprocessing
-data['date'] = pd.to_datetime(data['date'])
-data = pd.get_dummies(data, columns=['platform'], drop_first=True)
-
 # Feature selection
-X = data.drop(['date', 'sales'], axis=1)
-y = data['sales']
+X = data.drop(['Sales'], axis=1)
+y = data['Sales']
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
